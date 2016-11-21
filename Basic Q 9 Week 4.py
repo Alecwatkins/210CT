@@ -34,7 +34,7 @@ def binary_search(list, lowvalue, highvalue, low, high):
         if high - low <= 1: 
                 print("False")
         else:
-                middle = int((low + high) / 2 + 0.5)
+                middle = int((low + high) // 2 + 0.5)
                 if list[middle] >= lowvalue and list[middle] <= highvalue:
                         print("True")
                 elif highvalue < list[middle]:
