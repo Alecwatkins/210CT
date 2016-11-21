@@ -31,16 +31,16 @@ high = len(list) #Pointer to end of list
 low = 0 #Pointer to bottom of list
 
 def binary_search(list, lowvalue, highvalue, low, high):
-	if high - low <= 1: 
-		print("False")
-	else:
-		middle = (low + high) // 2
-		if list[middle] >= lowvalue and list[middle] <= highvalue:
-			print("True")
-		elif highvalue < list[middle]:
-			return binary_search(list, lowvalue, highvalue, low, middle-1)
-		elif lowvalue > list[middle]:
-			return binary_search(list, lowvalue, highvalue, middle+1, high)
+        if high - low <= 1: 
+                print("False")
+        else:
+                middle = (low + high) // 2
+                if list[middle] >= lowvalue and list[middle] <= highvalue:
+                        print("True")
+                elif highvalue < list[middle]:
+                        return binary_search(list, lowvalue, highvalue, low, middle+1)
+                elif lowvalue > list[middle]:
+                        return binary_search(list, lowvalue, highvalue, middle-1, high)
 
 print(list)
 binary_search(list, lowvalue, highvalue, low, high)
