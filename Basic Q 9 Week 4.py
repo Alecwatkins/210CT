@@ -46,4 +46,3 @@ print(list)
 binary_search(list, lowvalue, highvalue, low, high)
 
 ##Big O Runtime = O(Log(n))
-
