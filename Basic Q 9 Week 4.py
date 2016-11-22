@@ -22,10 +22,10 @@
 #			RETURN FUNCTION(list, rangemax, rangemin, high, MIDDLE+1)
 
 import random
-#list = [1, 2, 4, 5, 7, 11, 13, 15, 17, 22, 24, 34, 39, 44, 50]
+#lst = [1, 2, 4, 5, 7, 11, 13, 15, 17, 22, 24, 34, 39, 44, 50]
 lst = [0, 1, 2, 8, 13, 17, 19, 32, 42]
-#list = random.sample(range(0, 50), 20)
-#list.sort()
+#lst = random.sample(range(0, 50), 20)
+#lst.sort()
 lowvalue = int(input("Input lower bound")) 
 highvalue = int(input("Input higher bound"))
 high = len(lst) - 1 #Pointer to end of list
