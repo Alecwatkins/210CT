@@ -10,15 +10,15 @@
 #Put pointers on top and bottom of list (high, low)
 
 #FUNCTION binary_search
-#	IF high - low <= 1 then
+#	IF high - low < 0 then
 #		PRINT "False"
 #	Else
 #		Take center point of the list(MIDDLE)
 #		IF MIDDLE >= Rangemin and MIDDLE <= highvalue
 #			PRINT "True"
-# 		Elif Rangemax < MIDDLE 
+# 		Elif Rangemax <= MIDDLE 
 #			RETURN FUNCTION(list, rangemax, rangemin, low, MIDDLE-1)
-#		Elif Rangemin > MIDDLE
+#		Elif Rangemin >= MIDDLE
 #			RETURN FUNCTION(list, rangemax, rangemin, high, MIDDLE+1)
 
 import random
