@@ -55,13 +55,14 @@ class Graph(object):
   def print_graph(self):
     for key in sorted(list(self.nodes.keys())):
       print(key + " " + str(self.nodes[key].neighbours))
-      
+
+g = Graph()      
 for i in range(ord('A'), ord('K')):
-  Graph().add_node(Node(chr(i)))
-  
+  g.add_node(Node(chr(i)))
+ 
 edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
 for j in edges:
-  Graph().add_edge(j[:1], j[1:])
+  g.add_edge(j[:1], j[1:])
   
-Graph().print_graph()
+g.print_graph()
       
