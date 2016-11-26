@@ -43,26 +43,27 @@ class Node(object):
       self.neighbours.sort()
       
 class Graph(object):
-  nodes = {} #Create dictionary
-  
+  def __init__(self):
+      self.nodes = {}  #Create dictionary
+     
   def add_node(self, node):
       self.nodes[node.name] = node
       
   def add_edge(self, edge_left, edge_right):
-      self.nodes[edge_left].add_neighbour(edge_right)
-      self.nodes[edge_right].add_neighbour(edge_left)
+    if edge_left not in self.nodes:
+      self.add_node(Node(edge_left))
+    if edge_right not in self.nodes:
+      self.add_node(Node(edge_right))
+    self.nodes[edge_left].add_neighbour(edge_right)
+    self.nodes[edge_right].add_neighbour(edge_left)
 
   def print_graph(self):
     for key in sorted(list(self.nodes.keys())):
       print(key + " " + str(self.nodes[key].neighbours))
 
 g = Graph()      
-for i in range(ord('A'), ord('K')):
-  g.add_node(Node(chr(i)))
- 
 edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
 for j in edges:
   g.add_edge(j[:1], j[1:])
   
 g.print_graph()
-      
