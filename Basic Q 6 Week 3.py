@@ -19,3 +19,4 @@ while len(sentence) > 0: #While there is a word in the original sentence
 	result.append(sentence.pop(-1)) #Pop it onto the end of the output (reversing)
 print(" ".join(result)) #Join the words back into a sentence
 
+##Big O Runtime = O (N)
