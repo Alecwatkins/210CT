@@ -74,7 +74,3 @@ while True:  # we can not get all the paths in one trip, so call it repeatedly h
         print(res)
     if not res:  # we haven’t found other paths before exhausting visited; so now we give up looking
         break
- 
-if __name__ == "__main__":
-    # import sys;sys.argv = ['', 'Test.testName']
-    unittest.main()
