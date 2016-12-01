@@ -2,7 +2,7 @@
 # #Implement Dijkstra's algorithm for a weighted graph data structure
 
 from random import shuffle
-import unittest
+#import unittest
 
 class Node(object):
  
@@ -38,7 +38,50 @@ class Graph(object):
     def print_graph(self):
         for key in sorted(list(self.nodes.keys())):
           print("Node  " + key + "  " + str(self.nodes[key].neighbours))
+          
+    def dijkstra(self,start,end):
+      
+      visited = {}
+      weights = {}
+      queue = []
+      start_weight = 1000
+      for i in self.nodes: #For all nodes, set the initial weight to infinity
+        weights[i] = start_weight
+        visited[i] = None #And set the initial visited nodes or history to 0
+      weights[start.name] = 0 #Start point is unique and has an initial weight of 0, it will always be 0
+      queue.insert(0, start) #Insert starting point into queue
+      while (len(queue) != 0): #While queue not empty
+        current = queue.pop() #Current node is the back of the queue
+        for j in current.neighbours: #For all neighbours of current node
+          dist = weights[current.name] + int(j[1]) #Add distance from current node to each of its neighbours
+          if dist < weights[j[0]]: #If this is less than starting weight (infinity) 
+            weights[j[0]] = dist #Update to the new weight
+            visited[j[0]] = current.name #Add these neighbours to visited
+            queue.insert(0, self.nodes[j[0]]) #Insert object node back into queue
+      route = [] #End route
+      target = end.name #End node
+      while target:
+        route.append(target)
+        target = visited[target]
+      route.reverse() #Starting at the end therefore need to reverse the route
+      return (route, weights[end.name]) #Send back the route and the distance
+
+g = Graph()
+edges = ['AB3', 'AE4', 'BF7', 'CG8', 'DE11', 'DH2', 'EH6', 'FG12', 'FI10', 'FJ5', 'GJ9', 'HI1']
+#edges = ['AB2', 'AC4', 'CD3', 'BD7']
+for j in edges:
+  g.add_edge(j[:1], j[1:2], j[2:])
  
+g.print_graph()
+start = g.nodes['A']
+end = g.nodes['D']
+print("Start Node = " + start.name)
+print("End Node = " + end.name)
+route, distance = g.dijkstra(start, end)
+print("Fastest Route = ", route, "Distance = ", distance)
+
+
+#Attempt 1 - Not working 
  
 #    def dijkstras(self, start, end, visited="", path=''):
 #        nodes = []
@@ -60,51 +103,10 @@ class Graph(object):
 #        for i in range(len(res)-1):
 #            node = self.nodes[res[i]]
 #            i = i + 1
-#            #print(node.neighbours)
+#            print(node.neighbours)
 #             
 #        return(" Distance =")
 
-    def dijkstra(self,start,end):
-      
-      history = {}
-      weights = {}
-      queue = []
-      start_weight = 5000 #Set initial weights to infinity
-      for i in self.nodes: #for all nodes, sets the weights
-        weights[i] = start_weight
-        history[i] = None #initial histroy set to none
-      weights[start.name] = 0 #starting weight of the start point set to 0
-      queue.insert(0,start) #insert start node into queue
-      while (len(queue) != 0): #while queue not empty
-        currentNode = queue.pop() 
-        for j in currentNode.neighbours: #for all neighbours of current node
-          dist = weights[currentNode.name] + int(j[1])
-          if dist < weights[j[0]]:
-            weights[j[0]] = dist
-            history[j[0]] = currentNode.name #history......
-            queue.insert(0,self.nodes[j[0]]) #insert object node back into queue
-      path = []
-      target = end.name
-      while target is not None:
-        path.append(target)
-        target = history[target]
-      path.reverse()
-      return (path, weights[end.name])
-
-g = Graph()
-edges = ['AB3', 'AE4', 'BF7', 'CG8', 'DE11', 'DH2', 'EH6', 'FG12', 'FI10', 'FJ5', 'GJ9', 'HI1']
-#edges = ['AB2', 'AC4', 'CD3', 'BD7']
-for j in edges:
-  g.add_edge(j[:1], j[1:2], j[2:])
- 
-g.print_graph()
-start = g.nodes['A']
-end = g.nodes['D']
-print("Start Node = " + start.name)
-print("End Node = " + end.name)
-x,y = g.dijkstra(start,end)
-print(x, y)
- 
 #visited = []
 #while True:  # we can not get all the paths in one trip, so call it repeatedly hoping it will find new routes
 #    res = g.dijkstras(start, end, visited)
@@ -113,5 +115,3 @@ print(x, y)
 #        print(res, distance)
 #    if not res:  # we haven’t found other paths before exhausting visited; so now we give up looking
 #        break
-      
-      
