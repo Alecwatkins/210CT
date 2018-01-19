@@ -79,39 +79,3 @@ print("Start Node = " + start.name)
 print("End Node = " + end.name)
 route, distance = g.dijkstra(start, end)
 print("Fastest Route = ", route, "Distance = ", distance)
-
-
-#Attempt 1 - Not working 
- 
-#    def dijkstras(self, start, end, visited="", path=''):
-#        nodes = []
-#        visited += start.name
-#        for n, w in start.neighbours:
-#           nodes.append(n)
-#        if start.name == end.name:
-#            return end.name
-#        else:
-#            shuffle(nodes)  # give us some better chances are discovering other nodes on successive runs
-#            for i in nodes:
-#                if visited.count(i) <= len(nodes) and i not in path:
-#                    rt = self.dijkstras(self.nodes[i], end, visited, path)
-#                    path = start.name + rt
-#                    return path
-#            return ''
- 
-#    def find_distance(self, res):
-#        for i in range(len(res)-1):
-#            node = self.nodes[res[i]]
-#            i = i + 1
-#            print(node.neighbours)
-#             
-#        return(" Distance =")
-
-#visited = []
-#while True:  # we can not get all the paths in one trip, so call it repeatedly hoping it will find new routes
-#    res = g.dijkstras(start, end, visited)
-#    if res.endswith(end.name):# only paths found that end in the end name are successful, ignore others
-#        distance = g.find_distance(res)
-#        print(res, distance)
-#    if not res:  # we haven’t found other paths before exhausting visited; so now we give up looking
-#        break
